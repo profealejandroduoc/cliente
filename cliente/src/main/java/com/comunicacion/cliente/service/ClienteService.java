@@ -1,5 +1,7 @@
 package com.comunicacion.cliente.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 // service/ClienteService.java
 
 
@@ -12,14 +14,15 @@ import java.util.Optional;
 
 @Service
 public class ClienteService {
-    private final ClienteRepository repo;
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     public ClienteService(ClienteRepository repo) {
-        this.repo = repo;
+        this.clienteRepository = repo;
     }
 
     public Optional<Cliente> findById(Long id) {
-        return repo.findById(id);
+        return clienteRepository.findById(id);
     }
 }
 
