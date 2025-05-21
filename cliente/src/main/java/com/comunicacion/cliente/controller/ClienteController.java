@@ -41,15 +41,24 @@ public class ClienteController {
             nuevo = clienteService.guardarCliente(cliente);
             return new ResponseEntity<>(nuevo, HttpStatus.CREATED);
         } catch (Exception e) {
-           return new ResponseEntity<>(HttpStatus.CONFLICT); // 409 si los clientes están duplicados
+            return new ResponseEntity<>(HttpStatus.CONFLICT); // 409 si los clientes están duplicados
         }
-       
 
     }
 
     @GetMapping("/{id}")
-    public Cliente getCliente(@PathVariable Long id) {
-        return clienteService.findById(id).orElse(null);
+    public ResponseEntity<Cliente> getCliente(@PathVariable Long id) {
+        Cliente buscado=clienteService.findById(id).orElse(null); //.orElse controla el tipo Optional<Cliente>
+        if(buscado==null)
+        {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(buscado,HttpStatus.OK);
     }
+    // Prueba entidad simple
+    // @GetMapping("/{id}")
+    // public Cliente getCliente(@PathVariable Long id) {
+    // return clienteService.findById(id).orElse(null);
+    // }
 
 }
