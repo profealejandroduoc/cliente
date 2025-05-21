@@ -9,12 +9,17 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 
-
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCliente;
+
+    @Column(length = 50, nullable = false)
     private String nombre;
+
+    @Column(length = 50, nullable = false)
     private String apellido;
+
+    @Column(length = 250, nullable = true)
     private String correo;
 }
