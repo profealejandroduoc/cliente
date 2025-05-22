@@ -55,10 +55,6 @@ public class ClienteController {
         }
         return new ResponseEntity<>(buscado,HttpStatus.OK);
     }
-    // Prueba entidad simple
-    // @GetMapping("/{id}")
-    // public Cliente getCliente(@PathVariable Long id) {
-    // return clienteService.findById(id).orElse(null);
-    // }
+  
 
 }
